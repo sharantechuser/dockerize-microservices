@@ -1,7 +1,7 @@
 # Dockerize two spring boot microservices
 
 
-Two spring boot microservices are communicating using docker containers
+Two spring boot microservices running in a container are communicating using docker network
 
 
 Created two java spring boot application
