@@ -49,3 +49,47 @@ docker network is creating to communicate between two container. As we are run t
 
      Response:
      {"id":1,"name":"Jenny"}% 
+
+
+
+# Dockerized using docker-compose
+
+#### docker-compose.yml
+     
+        version: '3'
+
+        services:
+        spring-api-app1:
+            container_name: spring-api-app1
+            build: 
+            context: ./spring-boot-app-1/.
+            ports:
+            - 8081:8081
+            networks:
+            - spring-app-network
+            depends_on:
+            - spring-api-app2
+        spring-api-app2:
+            container_name: spring-api-app2
+            build: 
+            context: ./spring-boot-app-2/.
+            ports:
+            - 8082:8082
+            networks:
+            - spring-app-network
+
+        networks:
+        spring-app-network:
+            name: spring-app-network
+
+#### docker-compose build
+
+     docker-compose up --build
+
+  #### Test the application
+
+     CURL http://localhost:8081/student/app-1/1
+
+     Response:
+     {"id":1,"name":"Jenny"}% 
+   
